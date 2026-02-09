@@ -1,0 +1,167 @@
+.about-page {
+    padding: 2rem 0 4rem;
+    min-height: calc(100vh - 80px);
+}
+
+.about-hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.about-hero h1 {
+    margin-bottom: 1.5rem;
+}
+
+.about-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Models Section */
+.models-section {
+    margin-bottom: 4rem;
+}
+
+.models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.model-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.model-card h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.model-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.model-stats .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Features Section */
+.features-section {
+    margin-bottom: 4rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-item {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-md);
+    color: white;
+}
+
+.feature-item h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+}
+
+.feature-item p {
+    font-size: 0.875rem;
+}
+
+/* Technology Section */
+.tech-section {
+    margin-bottom: 4rem;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.tech-category {
+    padding: 2rem;
+}
+
+.tech-category h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.tech-category ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tech-category li {
+    padding: 0.75rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.tech-category li:hover {
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .about-description {
+        font-size: 1.125rem;
+    }
+
+    .models-grid,
+    .features-grid,
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+}
