@@ -68,3 +68,17 @@ dist/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Secrets & Security
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.sqlite3
+*.db
+secrets.json
+credentials.json
+client_secret.json
+.env.*
+!.env.example
