@@ -10,6 +10,7 @@ import base64
 from io import BytesIO
 
 from app.models.detector import load_model, EfficientNetDetector, XceptionDetector, CustomCNNDetector
+from app.models.frequency_detector import FrequencyDetector
 from app.core.config import settings
 from app.utils.image_processing import preprocess_image, extract_face
 from app.utils.video_processing import extract_frames
@@ -69,7 +70,12 @@ class DetectionService:
                 self.models['custom_cnn'] = CustomCNNDetector().to(self.device)
                 self.models['custom_cnn'].eval()
                 print("⚠️ Using untrained Custom CNN model (demo mode)")
-                
+            
+            # Load Frequency Detector
+            self.models['frequency_detector'] = FrequencyDetector().to(self.device)
+            self.models['frequency_detector'].eval()
+            print("⚠️ Using untrained Frequency Detector model (demo mode)")
+            
         except Exception as e:
             print(f"❌ Error loading models: {e}")
             raise
@@ -137,10 +143,19 @@ class DetectionService:
                 'real': float(custom_probs[0]),
                 'fake': float(custom_probs[1])
             }
+            
+        # Frequency Detector
+        with torch.no_grad():
+            frequency_output = self.models['frequency_detector'](custom_input)
+            frequency_probs = F.softmax(frequency_output, dim=1)[0]
+            model_predictions['frequency_detector'] = {
+                'real': float(frequency_probs[0]),
+                'fake': float(frequency_probs[1])
+            }
         
         # Ensemble prediction (weighted average)
         if settings.USE_ENSEMBLE:
-            weights = {'efficientnet': 0.4, 'xception': 0.4, 'custom_cnn': 0.2}
+            weights = {'efficientnet': 0.35, 'xception': 0.35, 'custom_cnn': 0.15, 'frequency_detector': 0.15}
             ensemble_fake_prob = sum(
                 model_predictions[model]['fake'] * weights[model]
                 for model in weights

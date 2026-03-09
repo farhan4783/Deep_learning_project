@@ -15,7 +15,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+clone this repo
 cd deepfake-detection
 ```
 
